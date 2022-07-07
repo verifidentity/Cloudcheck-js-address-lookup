@@ -1,0 +1,21 @@
+div.autocomplete div {
+	font-size: 16px;
+	border-bottom: 1px solid #dbdbdb;
+	font-family: "Atlas Grotesk Web";
+	padding-top: 2px;
+	padding-bottom: 2px;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+div.autocomplete {
+	border: 1px solid #999;
+	width: max-content;
+}
+div.autocomplete div:hover {
+	color: white;
+	background-color:#1478d0;
+}
+div.autocomplete div.selected {
+	color: white;
+	background-color:#1478d0;
+}

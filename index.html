@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+<head>
+	<title>Address Lookup</title>
+
+	<meta charset="UTF-8" />
+	<meta name="last-modified" content="now" />
+	<meta name="viewport" content="initial-scale=1">
+</head>
+
+
+<body class="verifi direct notag ">
+
+	<header class="site-header">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="addressLookup-1.0.js"></script>
+		<link rel="stylesheet" type="text/css" href="addressLookup-1.0.css">
+        
+
+	</header>
+	<div id="site" class="content ">
+		<input id="country" value="NZ">
+        <input type="text" id="address-lookup" value="5"/>
+
+	</div>
+
+	<footer class="site-footer">
+		<div class="grid-wrapper no-user">
+            <div class="text-wrapper">
+                <p class="-smallest -light">Made in New Zealand by Verifi Identity Services</p>
+            </div>
+        </div>
+	</footer>
+	<script>
+		console.log($("#address-lookup"));
+		AddressLookup.init("https://stagingapi.cloudcheck.co.nz/addresslookup");
+		AddressLookup.auth("lR5fRUOBj8hMEfZBSM3Y5eDC8U939of9");
+		AddressLookup.useClientOptions({
+			minLength: 3,
+			onRetrieve: (data)=> {console.log("CALLBACK", data.payload[0].fullAddress)}
+		});
+		AddressLookup.autocomplete('address-lookup', 'country');
+	</script>
+
+
+
+</body>
+
+</html>
