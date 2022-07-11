@@ -1,5 +1,5 @@
 var AddressLookup = {
-    LOOKUP_URL: "https://stagingapi.cloudcheck.co.nz/addresslookupghj",
+    LOOKUP_URL: "https://api.cloudcheck.co.nz/addresslookup",
     API_KEY: "",
     FEATURE_OPTS: {
         exposeAttributes:1, 
@@ -16,6 +16,7 @@ var AddressLookup = {
     },
     NZ: "NZ",
     AU: "AU",
+    INTERNATIONAL: "INT",
     NZAD: "NZAD",
     NZPAF: "NZPAF",
     AUPAF: "AUPAF",
@@ -54,7 +55,8 @@ var AddressLookup = {
     GEOCODE: "geocode",
     SOURCE_OF_TRUTH_MAP: {
         NZ: "NZAD",
-        AU: "AUPAF"
+        AU: "AUPAF",
+        INT: ""
     },
     SOURCE_OF_TRUTH: "",
     INPUT_FIELD: {},
