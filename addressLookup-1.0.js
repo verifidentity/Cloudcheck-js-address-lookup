@@ -2,11 +2,10 @@ var AddressLookup = {
     LOOKUP_URL: "https://api.cloudcheck.co.nz/addresslookup",
     API_KEY: "",
     FEATURE_OPTS: {
-        exposeAttributes:1, 
-        groupAddresses:1, 
-        addressTypeFilter: "urban,rural", 
-        positionFilter: "doorstop,rooftop,single", 
-        singleLineHitNumber: 10, 
+        exposeAttributes:1,
+        addressTypeFilter: "urban,rural",
+        positionFilter: "doorstop,rooftop,single",
+        singleLineHitNumber: 10,
         caseType: "TITLE"
     },
     CLIENT_OPTS: {
@@ -78,13 +77,13 @@ var AddressLookup = {
     },
     /**
      * sets the feature options. This specifies what filters or similar are applied to the requests and responses
-     * @param {object} opts 
+     * @param {object} opts
      */
     useFeatureOptions: (opts) => {
         AddressLookup.FEATURE_OPTS = AddressLookup.FEATURE_OPTS.assign(opts);
     },
     /**
-     * sets the client options. This specifies behavior of how the requests are called and how the responses are handled 
+     * sets the client options. This specifies behavior of how the requests are called and how the responses are handled
      * @param {object} opts the client options
      */
     useClientOptions: (opts) => {
@@ -102,8 +101,8 @@ var AddressLookup = {
         }
     },
     /**
-     * associate an addressProperty with a form field. After the retrieve method, 
-     * the relevant fields will be populated with the associated data. 
+     * associate an addressProperty with a form field. After the retrieve method,
+     * the relevant fields will be populated with the associated data.
      * If no fields are added, the full address will be given to the input field
      * @param {string} addressProperty The property of the address to be added, such as AddressLookup.SUBURB or AddressLookup.STREETNAME
      * @param {string} fieldId the id of the form field which will contain the data after the retrieve call.
@@ -113,21 +112,22 @@ var AddressLookup = {
     },
     /**
      * sets up autocomplete on the inputField, using the countryField
-     * @param {string} inputFieldId 
-     * @param {string} countryFieldId 
+     * @param {string} inputFieldId
+     * @param {string} countryFieldId
      */
     autocomplete: (inputFieldId, countryFieldId)  => {
+    	var resultList = $('<div></div>');
         AddressLookup.INPUT_FIELD = $(`#${inputFieldId}`);
-        var resultList = $('<div class="autocomplete"></div>')
-        AddressLookup.INPUT_FIELD.parent().append(resultList);
         AddressLookup.INPUT_FIELD.keypress(() => {
             if (AddressLookup.INPUT_FIELD.val().length >= AddressLookup.CLIENT_OPTS.minLength) {
+            	resultList.remove();
+        		resultList = $('<div class="autocomplete"></div>');
+        		AddressLookup.INPUT_FIELD.parent().append(resultList);
                 if ($(`#${countryFieldId}`).length > 0) {
                     AddressLookup.COUNTRY = $(`#${countryFieldId}`).val();
                 }
                 AddressLookup.find(
                     (response) => {
-                        resultList.empty();
                         for (let i = 0; i < response.payload.length; i++) {
                             var resultItem = $(`<div id="address${i}">${response.payload[i].fullAddress}</div>`);
                             resultItem.click(() => {
@@ -200,7 +200,7 @@ var AddressLookup = {
             headers: { 'x-api-key': AddressLookup.API_KEY}
         }).done((response) => {
             onSuccess(response);
-            
+
         }).fail((err) => {
             onFail(err);
         })
