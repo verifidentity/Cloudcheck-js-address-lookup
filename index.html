@@ -26,8 +26,8 @@
 		</footer>
 		<script>
 			console.log($("#address-lookup"));
-			AddressLookup.init("https://stagingapi.cloudcheck.co.nz/addresslookup");
-			AddressLookup.auth("lR5fRUOBj8hMEfZBSM3Y5eDC8U939of9");
+			AddressLookup.init("https://api.cloudcheck.co.nz/addresslookup");
+			AddressLookup.auth("<replaceMe>");
 			AddressLookup.useClientOptions({
 				minLength: 3,
 				onRetrieve: (data)=> {console.log("CALLBACK", data.payload[0].fullAddress)}
